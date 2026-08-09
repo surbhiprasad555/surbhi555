@@ -1,0 +1,4 @@
+Created At: 2026-08-09T02:27:31+05:30
+Tool is running as a background task with task id: 5746173f-6433-4243-9da4-27b902cc2f66/task-1935
+Task Description: Select-String -Path "$env:APPDATA\Code\User\History\*\*" -Pattern "export default function App" -List | Select-Object -First 5
+Task logs are available at: file:///C:/Users/Acer/.gemini/antigravity/brain/5746173f-6433-4243-9da4-27b902cc2f66/.system_generated/tasks/task-1935.log
