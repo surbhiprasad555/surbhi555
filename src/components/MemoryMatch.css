@@ -1,0 +1,190 @@
+.mm-wrapper {
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(340px); /* Positioning near arrow 5 */
+  z-index: 9998;
+}
+
+.mm-container {
+  background-color: #F8E8EE; /* soft pastel pink, like Sudoku */
+  border-radius: 16px;
+  padding: 12px 14px;
+  width: 250px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(216, 182, 176, 0.4);
+  pointer-events: auto !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mm-title-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.mm-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #D1899A;
+  margin: 0 0 2px 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mm-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  color: var(--ink-light);
+  margin: 0;
+}
+
+.mm-stat-box {
+  background: white;
+  border-radius: 8px;
+  padding: 2px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(168, 181, 162, 0.2);
+}
+
+.mm-stat-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  color: var(--ink-lighter);
+}
+
+.mm-stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8D7B82;
+}
+
+.mm-completion {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #E74C3C;
+  text-align: center;
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.mm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.mm-card {
+  aspect-ratio: 1;
+  perspective: 1000px; /* Gives the 3D flip effect */
+  cursor: pointer;
+}
+
+.mm-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy flip */
+  transform-style: preserve-3d;
+}
+
+.mm-card.flipped .mm-card-inner {
+  transform: rotateY(180deg);
+}
+
+.mm-card-front, .mm-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.mm-card-front {
+  background-color: #E2E0EA; /* Soft pastel blue/purple */
+  border: 1px solid rgba(0,0,0,0.05);
+  color: white;
+  font-weight: bold;
+}
+
+.mm-card-pattern {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.mm-card-back {
+  background-color: #FFF;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(216, 182, 176, 0.3);
+}
+
+.mm-card-back img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.mm-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mm-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mm-btn.mm-reset {
+  color: var(--ink-light);
+}
+
+.mm-btn.mm-reset:hover {
+  background: #B3C2AD; /* Minty */
+  color: white;
+  border-color: transparent;
+}
+
+.mm-btn.mm-giveup {
+  color: #D1899A;
+  border-color: rgba(209, 137, 154, 0.3);
+}
+
+.mm-btn.mm-giveup:hover {
+  background: #D1899A;
+  color: white;
+  border-color: transparent;
+}

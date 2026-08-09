@@ -1,0 +1,211 @@
+.wotd-wrapper {
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(0px); /* Adjust based on arrow 1 */
+  z-index: 9998;
+}
+
+.wotd-container {
+  background-color: #FDF6E3; /* Pastel butter yellow */
+  border-radius: 16px;
+  padding: 14px 16px;
+  width: 320px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(210, 195, 150, 0.4);
+  pointer-events: auto !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wotd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wotd-title-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.wotd-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #C4A94D;
+  margin: 0 0 2px 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wotd-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  color: var(--ink-light);
+  margin: 0;
+}
+
+.wotd-game-area {
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wotd-guess-slots, .wotd-jumbled-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.wotd-tile {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.wotd-tile.slot {
+  background-color: #EFE6DE;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: inset 0px 2px 4px rgba(0,0,0,0.05);
+}
+
+.wotd-tile.slot.filled {
+  background-color: #F5F1EA;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.wotd-tile.source {
+  background-color: #E2E0EA;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.wotd-tile.source.empty {
+  background-color: transparent;
+  box-shadow: none;
+  border-color: transparent;
+  pointer-events: none;
+}
+
+.wotd-tile.source:not(.empty):hover, .wotd-tile.slot.filled:hover {
+  transform: translateY(-2px);
+}
+
+.wotd-tile.correct {
+  background-color: #B3C2AD; /* Mint green */
+  color: white;
+  cursor: default;
+}
+
+.wotd-meaning-box {
+  background-color: #F8F5F2;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(210, 195, 150, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeIn 0.4s ease;
+}
+
+.wotd-win-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #E74C3C;
+  text-align: center;
+}
+
+.wotd-meaning-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  color: var(--ink-light);
+  line-height: 1.4;
+}
+
+.wotd-meaning-text strong {
+  color: #C4A94D;
+}
+
+.wotd-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.wotd-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wotd-btn.reset {
+  color: var(--ink-light);
+}
+
+.wotd-btn.reset:hover {
+  background: #A8B5A2;
+  color: white;
+  border-color: transparent;
+}
+
+.wotd-btn.giveup {
+  color: #C4A94D;
+  border-color: rgba(196, 169, 77, 0.3);
+}
+
+.wotd-btn.giveup:hover {
+  background: #C4A94D;
+  color: white;
+  border-color: transparent;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.wotd-btn.check {
+  color: #8bb38d;
+  border-color: rgba(139, 179, 141, 0.3);
+}
+
+.wotd-btn.check:hover {
+  background: #8bb38d;
+  color: white;
+  border-color: transparent;
+}
+
+.error-shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}

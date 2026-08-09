@@ -1,0 +1,240 @@
+.sudoku-wrapper {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-705px); /* Position near arrow 3 */
+  z-index: 9998; /* Below TicTacToe if overlapping */
+}
+
+.sudoku-container {
+  background-color: #EAF2E9; /* Soft pastel matcha green */
+  border-radius: 16px;
+  padding: 12px;
+  width: max-content; /* Decreased size */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid rgba(168, 181, 162, 0.4);
+  pointer-events: auto !important;
+}
+
+.sudoku-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 190px; /* Constrain to board width */
+}
+
+/* ============================================================ */
+/* BOARD AREA                                                   */
+/* ============================================================ */
+
+.sudoku-board-area {
+  flex-shrink: 0;
+  background: white;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+  align-self: flex-start; /* Prevent stretching */
+}
+
+.sudoku-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  width: 180px;
+  height: 180px;
+  background-color: #C8D6C7; /* Grid lines color */
+  gap: 1px;
+}
+
+.sudoku-cell {
+  background-color: #FAFAFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: #6C7A6B;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  user-select: none;
+}
+
+.sudoku-cell:hover:not(.initial) {
+  background-color: #F1F6F0;
+}
+
+.sudoku-cell.initial {
+  font-weight: 700;
+  color: #5d5056;
+  cursor: default;
+}
+
+.sudoku-cell.selected {
+  background-color: #D3E0EA !important; /* Soft blue selection */
+}
+
+.sudoku-cell.related {
+  background-color: #EBF2F6; /* Highlight row/col */
+}
+
+/* 3x3 block borders */
+.sudoku-grid-lines {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+
+.line-v, .line-h {
+  position: absolute;
+  background-color: #A1B8A0;
+}
+
+.line-v { width: 2px; top: 0; bottom: 0; }
+.line-v.v1 { left: calc(33.333% - 1px); }
+.line-v.v2 { left: calc(66.666% - 1px); }
+
+.line-h { height: 2px; left: 0; right: 0; }
+.line-h.h1 { top: calc(33.333% - 1px); }
+.line-h.h2 { top: calc(66.666% - 1px); }
+
+/* ============================================================ */
+/* INFO SECTION                                                 */
+/* ============================================================ */
+
+.sudoku-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sudoku-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #8DA88C; /* darker green */
+  margin: 0 0 6px 0;
+  letter-spacing: 0.1em;
+}
+
+.sudoku-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--ink-light);
+  margin: 0 0 12px 0;
+}
+
+.sudoku-numpad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.numpad-btn {
+  background: white;
+  border: 1px solid rgba(168, 181, 162, 0.4);
+  border-radius: 8px;
+  padding: 4px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6C7A6B;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.numpad-btn:hover {
+  background: #8DA88C;
+  color: white;
+  border-color: #8DA88C;
+}
+
+.numpad-btn.erase {
+  background: #F0F0F0;
+}
+
+.sudoku-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sudoku-btn:hover {
+  background: #C8D6C7;
+  color: #fff;
+  border-color: transparent;
+}
+
+.sudoku-actions-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* Revealed Cell Styles */
+.sudoku-cell.user-filled {
+  color: #4A90E2; /* Blue for user input */
+  font-weight: 600;
+}
+
+.sudoku-cell.revealed-correct {
+  color: #27AE60; /* Green */
+  background-color: #EAF5ED;
+  font-weight: 700;
+}
+
+.sudoku-cell.revealed-incorrect {
+  color: #E74C3C; /* Red */
+  background-color: #FCECEB;
+  /* Show correct answer in red to denote a missed spot that was filled incorrectly */
+}
+
+/* Add pseudo element to show the correct answer next to the incorrect one */
+.sudoku-cell.revealed-incorrect::after {
+  content: ''; /* handled by react component actually, but visually we just show correct answer in red for simplicity. */
+}
+/* Wait, the react component shows the correct answer but colored red. Let's make the red text denote "you got it wrong but here is the right answer" */
+
+.sudoku-cell.revealed-missed {
+  color: #E67E22; /* Orange */
+  background-color: #FDF3E9;
+  font-weight: 600;
+}
+
+.sudoku-win-message {
+  margin-top: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #79A37F; /* soft green */
+  animation: fadeIn 0.5s ease;
+}
+
+.sudoku-error-message {
+  margin-top: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #E74C3C; /* soft red */
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
