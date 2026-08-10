@@ -199,6 +199,20 @@ export default function App() {
   const [navScrolled, setNavScrolled] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [showAboutModal, setShowAboutModal] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  /* Reduced-motion: disable decorative cursor overlays for users who opt out */
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const onChange = (e) => setReducedMotion(e.matches);
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else mq.addListener(onChange);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', onChange);
+      else mq.removeListener(onChange);
+    };
+  }, []);
 
   /* Nav scroll detection */
   useEffect(() => {
@@ -234,15 +248,17 @@ export default function App() {
       <WatercolorBg />
 
       {/* ── Fluid cursor overlay ─────────────────────────────── */}
-      <StarCursor />
-      <SplashCursor
-        DENSITY_DISSIPATION={2.8}
-        VELOCITY_DISSIPATION={1.8}
-        SPLAT_RADIUS={0.18}
-        CURL={2.5}
-        RAINBOW_MODE={true}
-        TRANSPARENT={true}
-      />
+      {!reducedMotion && <StarCursor />}
+      {!reducedMotion && (
+        <SplashCursor
+          DENSITY_DISSIPATION={2.8}
+          VELOCITY_DISSIPATION={1.8}
+          SPLAT_RADIUS={0.18}
+          CURL={2.5}
+          RAINBOW_MODE={true}
+          TRANSPARENT={true}
+        />
+      )}
 
       {/* ── Navigation ───────────────────────────────────────── */}
       <nav className="nav" style={{ width: '220px' }}>

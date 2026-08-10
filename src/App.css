@@ -36,6 +36,10 @@
   --radius-sm:      10px;
   --radius:         18px;
   --radius-lg:      28px;
+  --ease-out:       cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out:    cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-fast:       160ms;
+  --dur-base:       240ms;
 }
 
 /* ============================================================ */
@@ -115,7 +119,7 @@
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s var(--ease-out);
 }
 
 .nav-links a:hover { color: var(--ink); }
@@ -239,12 +243,21 @@
   border-radius: 999px;
   border: 1px solid var(--ink);
   letter-spacing: 0.03em;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out);
+  will-change: transform;
 }
 
 .btn-primary:hover {
   background: #A8B5A2;
   color: #F8F6F2;
   border-color: #A8B5A2;
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
 }
 
 .btn-ghost {
@@ -259,12 +272,21 @@
   border-radius: 999px;
   border: 1px solid var(--ink);
   letter-spacing: 0.03em;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out);
+  will-change: transform;
 }
 
 .btn-ghost:hover {
   background: #D8B6B0;
   color: #F8F6F2;
   border-color: #D8B6B0;
+}
+
+.btn-ghost:active {
+  transform: scale(0.97);
 }
 
 .hero-links {
@@ -687,6 +709,15 @@
   font-weight: 500;
   color: var(--ink);
   position: relative;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out);
+  will-change: transform;
+  user-select: none;
+}
+
+.tag:active {
+  transform: scale(0.94);
 }
 
 /* Per-group tag colors */
@@ -902,8 +933,8 @@
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: rgba(0, 0, 0, 0.15); /* Very light translucent dark tint */
-  backdrop-filter: blur(4px); /* Much softer blur so you can still see through */
+  background: transparent; /* No dark tint behind modals */
+  backdrop-filter: blur(4px); /* Soft blur for readability, no darkening */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2235,13 +2266,19 @@
   color: var(--ink);
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out);
+  will-change: transform;
   text-decoration: none;
 }
 
 .contact-socials a:hover {
   background: rgba(168, 181, 162, 0.25);
   transform: translateY(-2px);
+}
+
+.contact-socials a:active {
+  transform: scale(0.95);
 }
 
 .contact-divider {
@@ -2303,13 +2340,19 @@
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out);
+  will-change: transform;
   margin-top: 8px;
 }
 
 .contact-submit:hover {
   background: var(--ink-light);
   transform: translateY(-2px);
+}
+
+.contact-submit:active {
+  transform: translateY(0) scale(0.97);
 }
 
 .custom-pixel-card {
@@ -2430,13 +2473,19 @@
   color: var(--ink);
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out);
+  will-change: transform;
   text-decoration: none;
 }
 
 .contact-socials a:hover {
   background: rgba(168, 181, 162, 0.25);
   transform: translateY(-2px);
+}
+
+.contact-socials a:active {
+  transform: scale(0.95);
 }
 
 .contact-divider {
@@ -2498,13 +2547,19 @@
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out);
+  will-change: transform;
   margin-top: 8px;
 }
 
 .contact-submit:hover {
   background: var(--ink-light);
   transform: translateY(-2px);
+}
+
+.contact-submit:active {
+  transform: translateY(0) scale(0.97);
 }
 
 .custom-pixel-card {
@@ -2695,13 +2750,19 @@
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out);
+  will-change: transform;
   margin-top: 8px;
 }
 
 .contact-submit:hover {
   background: var(--ink-light);
   transform: translateY(-2px);
+}
+
+.contact-submit:active {
+  transform: translateY(0) scale(0.97);
 }
 
 .custom-pixel-card {
