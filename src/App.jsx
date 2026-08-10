@@ -7,7 +7,6 @@ import CircularGallery from './components/CircularGallery';
 import AchievementFolder from './components/AchievementFolder';
 import WatercolorBg from './components/WatercolorBg';
 import PixelCard from './components/PixelCard';
-import TicTacToe from './components/TicTacToe';
 import Sudoku from './components/Sudoku';
 import WhackAMole from './components/WhackAMole';
 import MemoryMatch from './components/MemoryMatch';
@@ -708,7 +707,6 @@ export default function App() {
             <InteractiveSticker message="← probably important. probably."  src="/stickers/5arrow-removebg-preview.svg" alt="arrow 5" className="secrets-arrow-5" />
             <InteractiveSticker message="this way, little wanderer"  src="/stickers/4arrow-removebg-preview.svg" alt="arrow 4" className="secrets-arrow-4" />
             <InteractiveSticker message="pssst… look over here 👀"  src="/stickers/1arrow-removebg-preview.svg" alt="arrow 1" className="secrets-arrow-1" />
-            <TicTacToe />
             <Sudoku />
             <WhackAMole />
             <MemoryMatch />
